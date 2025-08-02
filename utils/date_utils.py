@@ -19,21 +19,21 @@ def parse_date_filters(date_text: str) -> Dict[str, Any]:
         filters["date_from"] = yesterday
         filters["date_to"] = today
     
-    elif "this week" in date_text:
+    elif "this_week" in date_text:
         # Start of current week (Monday)
         start_of_week = today - timedelta(days=today.weekday())
         end_of_week = start_of_week + timedelta(days=7)
         filters["date_from"] = start_of_week
         filters["date_to"] = end_of_week
     
-    elif "last week" in date_text:
+    elif "last_week" in date_text:
         # Previous week
         start_of_last_week = today - timedelta(days=today.weekday() + 7)
         end_of_last_week = start_of_last_week + timedelta(days=7)
         filters["date_from"] = start_of_last_week
         filters["date_to"] = end_of_last_week
     
-    elif "this month" in date_text:
+    elif "this_month" in date_text:
         # Current month
         start_of_month = today.replace(day=1)
         if today.month == 12:
@@ -43,7 +43,7 @@ def parse_date_filters(date_text: str) -> Dict[str, Any]:
         filters["date_from"] = start_of_month
         filters["date_to"] = end_of_month
     
-    elif "last month" in date_text:
+    elif "last_month" in date_text:
         # Previous month
         if today.month == 1:
             start_of_last_month = today.replace(year=today.year - 1, month=12, day=1)
